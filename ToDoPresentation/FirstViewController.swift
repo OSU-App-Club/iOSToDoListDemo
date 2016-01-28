@@ -31,15 +31,6 @@ class FirstViewController: UITableViewController, SecondViewControllerDelegate {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.accessoryType = cell?.accessoryType == UITableViewCellAccessoryType.Checkmark
-            ? UITableViewCellAccessoryType.None
-            : UITableViewCellAccessoryType.Checkmark
-        
-        cell?.selected = false
-    }
-    
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
@@ -57,7 +48,7 @@ class FirstViewController: UITableViewController, SecondViewControllerDelegate {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController.childViewControllers[0] as? SecondViewController {
+        if let destination = segue.destinationViewController.childViewControllers.first as? SecondViewController {
             destination.delegate = self
         }
     }
