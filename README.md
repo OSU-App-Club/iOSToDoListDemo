@@ -21,8 +21,33 @@ You've just created a new project. There are a few files you should know about i
 1. Main.storyboard is where you'll create your user interface.
 2. ViewController.swift and other files ending in .swift contain your application's logic.
 
+#### Creating a user interface in the Storyboard
+The normal way to create user interfaces for iOS is by using Storyboards. Click on Main.storyboard on the left bar to see the Interface Builder.
+
+In order to create the user interface for our To-Do List app, we're going to add some views. Views are just things you can see on the screen. Views can contain other views, and that's how bigger user interfaces are built up. The entire user interface visible at a given time is contained at some point in a single view.
+
+The first thing we want in the view is a navigation bar. Click on the View Controller in the middle of the screen, then in the menu bar at the top, click Editor -> Embed In -> Navigation Controller.
+
+Our To-Do items are going to be contained in a Table View. Let's add that first. Find the Table View in the list of views in the bottom right. You can type into the box to search for it. Drag the Table View on to the View Controller so that the top of the Table View is above the navigation bar.
+
+To position views the right way for a variety of screen sizes, we use *constraints*. Constraints define how views should be positioned relative to each other. This allows us, for instance, to make a view always be the same size as its container.
+
+1. Click on the Add New Constraints button (it's kind of a hieroglyph) in the bottom right.
+2. Add new constraints for the top, bottom, left and right by clicking the red I-shaped buttons.
+3. Uncheck "constrain to margins" and enter 0 for all the values of the top/left/bottom/right constraints.
+4. Near the bottom there's a drop-down menu labeled Update Frames. Select "Items of New Constraints" from the menu.
+5. Click "Add Constraints".
+
+The Table View should have blown up to take up the whole space in the View Controller. If the top didn't go high enough, click on the constraint on the top and delete it, then drag the top up past the navigation bar and recreate the constraint to make it go to the top.
+
+Next we have to define appearance of the rows in the table. Click on the Table View in the Storyboard, then open the Attributes Inspector on the right side. (That's the icon that looks like an arrow pointing down, just to the right of the little box with the squares and lines on it.)
+
+You should see a drop-down menu labeled *Prototype Cells.* Set its value to 1. An empty cell should have appeared in your Table View. Select this UITableViewCell and set its style to *Basic* and its Reuse Identifier to *ToDoItem*. This will allow us to make table view cells with this style in this table and show data with them.
+
+Now we're ready to start providing data to the table view so we can see something really happen in our app.
+
 #### Inside ViewController.swift
-First, click on ViewController.swift and see what's going on in there. ViewController is a class which inherits from the built-in class UIViewController. We override methods of the built-in UIViewController in order to make the app behave in a certain way.
+Click on ViewController.swift on the left menu and see what's going on in there. ViewController is a class which inherits from the built-in class UIViewController. We override methods of the built-in UIViewController in order to make the app behave in a certain way.
 
 The most important thing we want in a to-do list is a view which lists the to-do items! To achieve this, we're going to make use of UITableView. The UITableView class displays a list of items provided by its data source.
 
@@ -56,10 +81,16 @@ func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> In
 (3) Create and return a table view cell in the `cellForRowAtIndexPath` method.
 ```swift
 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCellWithIdentifier("toDoItem", forIndexPath: indexPath)
+    let cell = tableView.dequeueReusableCellWithIdentifier("ToDoItem", forIndexPath: indexPath)
     
     cell.textLabel?.text = toDoItems[indexPath.row]
     
     return cell
 }
 ```
+
+#### Hooking up the UITableView to the UITableViewDelegate
+Now, we just need to let the table view know that its delegate is our ViewController. Open Main.storyboard and click on the Table View. Then hold Control and drag from the Table View to the View Controller (the orange circle icon with the white rectangle inside). In the menu that pops up, click *dataSource*.
+
+#### First milestone
+Now you should have enough made in order to show something! Select a Simulator from the top drop-down menu and then click the play button. The simulator should load and show you your app, consisting of a table containing the to-do items you coded into your ViewController.
