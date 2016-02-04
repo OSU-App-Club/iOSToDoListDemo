@@ -111,6 +111,7 @@ The next thing people want to do in a To-Do List is add items to it! Let's creat
 
 #### Creating an AddToDoViewController
 We need to create a new View Controller subclass to contain the behavior we want this new screen to have.
+
 1. In the file listing on the left, right click on the yellow folder with the same name as your project. Select **New File**.
 2. Choose the category **iOS Source** and select **Swift File**. Name it **ToDoAddViewController**.
 3. In the new file, change `import Foundation` to `import UIKit`. Then write a Swift class as so:
@@ -138,6 +139,7 @@ weak var delegate: ToDoAddViewControllerDelegate?
 
 #### Wiring up the ToDoAddViewController in the Storyboard
 Let's go back to Main.storyboard and add some things to the new View Controller.
+
 1. Add a **Bar Button Item** and set its *System Item* to **Done**.
 2. Add a **Text Field** and then add the following constraints:
 3. Add a constraint for horizontal center.
@@ -147,9 +149,10 @@ Let's go back to Main.storyboard and add some things to the new View Controller.
 In the end you should have a text field centered vertically with a decent margin beneath the title bar.
 
 Now it's time to wire the newly created views up to the `ToDoAddViewController`.
+
 1. Click on the **Identity Inspector**-- the icon that looks like a box containing a box and lines.
 2. Select the new View Controller in the storyboard, then in the Class field on the right, type ToDoAddViewController and hit return.
-1. Click the button in the upper right that looks like two rings linked together. This is the Assistant Editor. You can use some of the buttons in the very upper right and in other places to dismiss unwanted menus and make more space.
+3. Click the button in the upper right that looks like two rings linked together. This is the Assistant Editor. You can use some of the buttons in the very upper right and in other places to dismiss unwanted menus and make more space.
 
 Now that Interface Builder knows what class this view controller corresponds to, it shows our ToDoAddViewController file.
 
@@ -170,6 +173,7 @@ This will inform the delegate of the text of the new to-do item, then return con
 
 #### Implementing the delegate protocol in ViewController.swift
 For *ViewController* to receive messages from *ToDoAddViewController*, it must implement the delegate protocol we created.
+
 1. Click on ViewController.swift and add `ToDoAddViewControllerDelegate` to the class signature, after `UITableViewDataSource`.
 2. Xcode should be mad right now, because we need to implement the methods of this protocol. Inside the class body, start typing toDoAdd... and the whole signature of the method should pop up. Select it and hit enter to autocomplete. Implement the method as follows:
 ```swift
