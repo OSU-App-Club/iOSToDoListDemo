@@ -203,6 +203,6 @@ func toDoAddViewControllerDidAddToDoItem(toDoItem: String) {
 Run the app, and you should find that you can go to the add view controller, type in an item's name, and have it show up in the to-do list!
 
 ## Next steps
-- Try to implement UITableViewDelegate (don't forget to wire it up in the Storyboard) so you can handle events from the table view and let the user check off or delete items.
+- Try to implement UITableViewDelegate so you can handle events from the table view and let the user check off or delete items. Don't forget to wire it up, either in the Storyboard or by adding `tableView.delegate = self` to a UIViewController method like `viewDidLoad`.
 - Rename the ViewController class and .swift file to something more descriptive like ToDoListViewController. Remember to rename the class for the corresponding View Controller in the Storyboard as well.
 - Exercise your Google-fu and come up with more cool things to make your app do.
