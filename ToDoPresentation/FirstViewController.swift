@@ -8,7 +8,10 @@
 
 import UIKit
 
-class FirstViewController: UITableViewController, SecondViewControllerDelegate {
+class FirstViewController: UIViewController, UITableViewDelegate,
+                           UITableViewDataSource, SecondViewControllerDelegate {
+    @IBOutlet weak var tableView: UITableView!
+    
     var toDoItems = ["Get groceries", "Wash my car", "Pet the dog"]
     
     override func viewDidLoad() {
@@ -21,21 +24,21 @@ class FirstViewController: UITableViewController, SecondViewControllerDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return toDoItems.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("toDoItem") ?? UITableViewCell(style: .Default, reuseIdentifier: "toDoItem")
         cell.textLabel?.text = toDoItems[indexPath.row]
         return cell
     }
     
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == UITableViewCellEditingStyle.Delete {
             toDoItems.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
