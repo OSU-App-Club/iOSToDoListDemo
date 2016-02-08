@@ -10,12 +10,13 @@ Install Xcode from the App Store. Make sure it's up to date by searching for it 
 Open Xcode. If you see the *Welcome to Xcode* screen, you can click *Create a new Xcode project*.  
 You can also click the File menu at the top, then select New -> Project.
 
+![Project setup](images/project_setup.png)
+
 Next, you'll be prompted to choose a template. Under the iOS Application section, choose the *Single View Application* template.  
 Enter a descriptive Product Name like *ToDoList*. The Organization Name and Organization Identifier can be left at their defaults.  
 For Language, select *Swift*.  
 For Devices, select *Universal*.  
 Uncheck *Use Core Data*, *Include Unit Tests*, and *Include UI Tests*
-(placeholder for first image)
 
 #### Finding your way around
 You've just created a new project. There are a few files you should know about in here.
@@ -28,11 +29,17 @@ The normal way to create user interfaces for iOS is by using Storyboards. Click 
 
 In order to create the user interface for our To-Do List app, we're going to add some **views**. Views are just things you can see on the screen. Views can contain other views, and that's how bigger user interfaces are built up. The entire user interface visible at a given time is contained at some point in a single view.
 
+![Embed view controller in a navigation controller](images/embed_in_nav.png)
+
 The first thing we want in the view is a **navigation bar**. Click on the View Controller in the middle of the screen, then in the menu bar at the top, click **Editor -> Embed In -> Navigation Controller**.
+
+![Add table view](/images/add_tableview.png)
 
 Our To-Do items are going to be contained in a **Table View**. Let's add that first. Find the Table View in the list of views in the bottom right. You can type into the box to search for it. Drag the Table View on to the View Controller so that the top of the Table View is above the navigation bar.
 
 To position views the right way for a variety of screen sizes, we use **constraints**. Constraints define how views should be positioned relative to each other. This allows us, for instance, to make a view always be the same size as its container.
+
+![Put contstraints on table view](/images/tableview_constraints.png)
 
 1. Click on the **Add New Constraints** button (it's kind of a hieroglyph) in the bottom right.
 2. Add new constraints for the top, bottom, left and right by clicking the red I-shaped buttons.
@@ -43,6 +50,8 @@ To position views the right way for a variety of screen sizes, we use **constrai
 The Table View should have blown up to take up the whole space in the View Controller. *If the top didn't go high enough*, click on the constraint on the top and delete it, then drag the top up past the navigation bar and recreate the constraint to make it go to the top.
 
 Next we have to define appearance of the rows in the table. Click on the Table View in the Storyboard, then open the **Attributes Inspector** on the right side. (That's the icon that looks like an arrow pointing down, just to the right of the little box with the squares and lines on it.)
+
+![Add a prototype cell to the table view](/images/prototype_cell.png)
 
 You should see a drop-down menu labeled **Prototype Cells.** Set its value to 1.  
 An empty cell should have appeared in your Table View. Select this UITableViewCell and set its style to *Basic* and its Reuse Identifier to *ToDoItem*.  
